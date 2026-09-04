@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citadel Club | High School Warhammer</title>
+    <style>
+        /* CSS STYLES */
+        :root {
+            --primary-red: #8b0000;
+            --primary-red-hover: #b22222;
+            --secondary-gold: #b8860b;
+            --secondary-gold-hover: #daa520;
+            --bg-dark: #121212;
+            --bg-lighter: #1e1e1e;
+            --text-light: #f4f4f4;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--bg-lighter);
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 3px solid var(--primary-red);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-light);
+        }
+
+        header p {
+            margin: 0;
+            font-size: 1.2rem;
+            color: var(--secondary-gold);
+            font-style: italic;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .hero-text {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* BUTTON STYLES */
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center;
+            margin: 2rem 0;
+        }
+
+        @media(min-width: 600px) {
+            .btn-container {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: #fff;
+            border-radius: 4px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-apply {
+            background-color: var(--primary-red);
+            border: 2px solid #5a0000;
+        }
+
+        .btn-apply:hover {
+            background-color: var(--primary-red-hover);
+        }
+
+        .btn-academy {
+            background-color: var(--secondary-gold);
+            color: #121212;
+            border: 2px solid #8b6508;
+        }
+
+        .btn-academy:hover {
+            background-color: var(--secondary-gold-hover);
+        }
+
+        /* JAVASCRIPT QUOTE SECTION */
+        .quote-section {
+            background-color: var(--bg-lighter);
+            padding: 2rem;
+            margin-top: 3rem;
+            border-radius: 8px;
+            border-left: 5px solid var(--secondary-gold);
+        }
+
+        #quote-display {
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+            min-height: 3rem;
+        }
+
+        .btn-small {
+            background-color: #333;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        .btn-small:hover {
+            background-color: #555;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            color: #777;
+            border-top: 1px solid #333;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Citadel Club</h1>
+        <p>Your High School Warhammer Community</p>
+    </header>
+
+    <div class="container">
+        <div class="hero-text">
+            <h2>Welcome to the Hobby!</h2>
+            <p>Whether you're diving into the grim darkness of the 41st Millennium or exploring the Mortal Realms of Age of Sigmar, the Citadel Club is the place for you. We gather to build, paint, learn the lore, and roll some dice.</p>
+            <p>Ready to join our ranks? Fill out the application below, or check out the academy to master your hobby skills.</p>
+        </div>
+
+        <div class="btn-container">
+            <a href="https://docs.google.com/forms/d/1xAzNPw6z_ee3Wci8o7J4KUUsYKDx8q26q9Yc1ngY8nM/edit" target="_blank" class="btn btn-apply">
+                Submit Club Application
+            </a>
+            
+            <a href="https://academy.warhammer.com/r/1hl2ug9dmc7e7ak2" target="_blank" class="btn btn-academy">
+                Join the Warhammer Academy
+            </a>
+        </div>
+
+        <div class="quote-section">
+            <p id="quote-display">"In the grim darkness of the far future, there is only war."</p>
+            <button class="btn btn-small" onclick="generateQuote()">Generate Lore Quote</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Citadel Club. All rights reserved.</p>
+    </footer>
+
+    <script>
+        /* JAVASCRIPT */
+        const quotes = [
+            "\"Knowledge is power, guard it well.\"",
+            "\"Hope is the first step on the road to disappointment.\"",
+            "\"Even a man who has nothing can still offer his life.\"",
+            "\"Walk softly, and carry a large gun.\"",
+            "\"By Sigmar, the hammer and the empire!\"",
+            "\"Only the insane have strength enough to prosper.\"",
+            "\"An open mind is like a fortress with its gates unbarred and unguarded.\""
+        ];
+
+        function generateQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            const quoteDisplay = document.getElementById('quote-display');
+            
+            // Add a quick fade effect
+            quoteDisplay.style.opacity = 0;
+            
+            setTimeout(() => {
+                quoteDisplay.innerText = quotes[randomIndex];
+                quoteDisplay.style.opacity = 1;
+                quoteDisplay.style.transition = "opacity 0.5s ease";
+            }, 200);
+        }
+    </script>
+
+</body>
+</html>
